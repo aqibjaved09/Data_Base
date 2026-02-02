@@ -1,5 +1,8 @@
 
 import mysql.connector
+import csv
+import os
+from datetime import datetime 
 conn = mysql.connector.connect(
     host="localhost", 
     user="root",
@@ -16,7 +19,7 @@ cursor.execute("USE user_authentication")
 cursor.execute("""CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(70) UNIQUE,
-    password VARCHAR(100) 
+    password VARCHAR(100)
 )
 """)
 
@@ -24,13 +27,14 @@ print("Successfully Table Created")
 
 # We Use Loop For Register And Login
 
-print(" 1. Register\n 2. Login\n 3. Exit")
+print(" 1. Register\n 2. Login\n 3. Csv File\n 4. Exit")
 
 
     # That we Use 3 Entry to put Develope the Data
 
 while True:
-    choice = input(" Enter your choice (1/2/3): ")
+    choice = input(" Enter your choice (1/2/3/4): ")
+
     if choice == '1':
         username = input("Enter username: ")
         password = input("Enter password: ")
@@ -38,12 +42,12 @@ while True:
         # Check if username already exists
         cursor.execute(" SELECT * FROM users WHERE username = %s", (username,))
         if cursor.fetchone():
-            print(" Username already exists Please choose a different username.")
+            print("Username already exists")
                 
-        # Use Else For Insert Data iF Data is Not Exist
+        # Use else For Insert Data iF Data is Not Exist
         else:
             cursor.execute(" INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
-            print(" Successfully Registered!")      
+            print("Successfully Registered!")      
         conn.commit()
         
     elif choice == '2':
@@ -56,7 +60,7 @@ while True:
             print(" Login successful!")
         else:
             print("Invalid username or password.....")
-
+    
     elif choice == '3':
         print(" Exiting....")
         
