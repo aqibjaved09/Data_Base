@@ -14,7 +14,8 @@ cursor.execute("CREATE DATABASE IF NOT EXISTS contacts_db")
 print ("Successfully DataBase Created\n")
 
 # Use Which One Table Name In DataBase 
-cursor.execute("USE contacts_db")
+cursor.execute("USE contacts_db") 
+
 
 # After DataBase Created Tables 
 cursor.execute("""CREATE TABLE IF NOT EXISTS student (
