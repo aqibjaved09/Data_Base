@@ -50,8 +50,11 @@ city = input("Enter city:")
 
 cursor.execute('SELECT*FROM student WHERE student_id =%s', (student_id,))
 id_existing = cursor.fetchone()
+cursor.fetchall()
+
 cursor.execute('SELECT*FROM student WHERE city=%s', (city,))
 city_existing = cursor.fetchone()
+cursor.fetchall()
 
 if id_existing:
     print(f'Student ID {student_id} already exists Please use a Different ID')
