@@ -51,8 +51,10 @@ while True:
         conn.commit()
         
     elif choice == '2':
+
+
         username = input("Enter username: ")
-        password = input("Enter password: ")
+        password = input("Enter password: ")      
 
         # Verify user credentials
         cursor.execute(" SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
@@ -67,7 +69,8 @@ while True:
         break
                     
     else:
-        print("Invalid choice. Please try again...")        
+        print("Invalid choice. Please try again...") 
+               
         
 # Connection Close
 cursor.close()

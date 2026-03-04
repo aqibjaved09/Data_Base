@@ -25,7 +25,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS student (
     grade VARCHAR(10),
     city VARCHAR(50)
 
-)s
+)
 """)
 
 # For 2nd Second Tab
@@ -47,8 +47,22 @@ age = int(input("Enter age:"))
 grade = input("Enter Customer grade: ")
 city = input("Enter city:")
 
+
+cursor.execute('SELECT*FROM student WHERE student_id =%s', (student_id,))
+id_existing = cursor.fetchone()
+cursor.execute('SELECT*FROM student WHERE city=%s', (city,))
+city_existing = cursor.fetchone()
+
+if id_existing:
+    print(f'Student ID {student_id} already exists Please use a Different ID')
+
+elif city_existing:
+    
+    print(f'Student ID {city} already exists Please use a Different city')
+
+else:
 # Insert the User Data 
-cursor.execute("INSERT INTO student (student_id,name, age, grade, city) VALUES (%s, %s, %s, %s, %s)", 
+    cursor.execute("INSERT INTO student (student_id,name, age, grade, city) VALUES (%s, %s, %s, %s, %s)", 
                (student_id,name, age, grade, city))
 
 print("Successfully Entered Data In Table")
@@ -56,7 +70,7 @@ print("Successfully Entered Data In Table")
 
 # Fetch Table Data 
 '''cursor.execute("SELECT * FROM student")
-data = cursor.fetchall()'''
+data = cursor.fetchall()'''          
 
 
 print(f"Output{cursor.execute}")
